@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* Sidebar styles */
+.sidebar-link {
+  @apply flex items-center gap-3 px-4 py-3 rounded-lg transition-colors;
+}
+
+.sidebar-link.active {
+  @apply bg-primary-500/20 text-primary-500;
+}
+
+.sidebar-link:not(.active) {
+  @apply text-gray-400 hover:bg-gray-800 hover:text-white;
+}
+
+/* Custom Animations */
+.animate-spotlight {
+  @apply absolute -top-32 left-0 -z-10 transform-gpu overflow-hidden blur-3xl;
+}
+
+.animate-spotlight:before {
+  content: "";
+  @apply absolute -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-gradient-spotlight;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  height: 360px;
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(239, 68, 68, 0.2),
+    rgba(234, 179, 8, 0.2),
+    rgba(59, 130, 246, 0.2)
+  );
+}
+
+/* Glass Effect */
+.glass {
+  @apply backdrop-blur-md bg-white/10 dark:bg-black/10;
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-rose-500 to-amber-500 animate-gradient;
+  background-size: 200% auto;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+
+.card-hover::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-primary-500/20 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.card-hover:hover::before {
+  @apply opacity-100;
+}
+
+/* Button Hover Effects */
+.button-glow {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+
+.button-glow::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-radial from-primary-500/30 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.button-glow:hover::before {
+  @apply opacity-100;
+}
+
+/* Shimmer Effect */
+.shimmer {
+  @apply relative overflow-hidden;
+}
+
+.shimmer::after {
+  content: '';
+  @apply absolute top-0 -right-full w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 animate-shimmer;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-2;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-primary-600 rounded-full;
+}
+
+/* Loading Animation */
+.loading-pulse {
+  @apply relative overflow-hidden;
+}
+
+.loading-pulse::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer;
+}
+
+/* Spotlight Effect */
+.spotlight {
+  @apply absolute top-0 left-0 -z-10 h-full w-full bg-gradient-spotlight opacity-0;
+  animation: spotlight 2s ease .75s 1 forwards;
+}
